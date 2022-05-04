@@ -8,11 +8,7 @@ class InputParser:
     def parse_file(self, path):
         f = open(path, "r")
         data = f.read()
-        print(data)
-        print()
         data = self._prune_data(data)
-        print(data)
-        print()
 
         splits = data.split(';')[1:]
         for split in splits:
@@ -63,6 +59,7 @@ class InputParser:
         commands = []
         for line in raw_data:
             components = line.split(' ')
+            
             if(len(components) != 3):
                 raise ValueError("Each COMMAND must have 3 components")
             
@@ -72,7 +69,7 @@ class InputParser:
         
         commands.sort(key=lambda x: x[0])
         commands = tuple(commands) #immutable
-        
+
         print(commands)
         return commands
 
