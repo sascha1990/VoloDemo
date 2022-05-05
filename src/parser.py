@@ -1,3 +1,4 @@
+
 class InputParser:
     def __init__(self) -> None:
         self._helpers = {}
@@ -11,6 +12,7 @@ class InputParser:
         data = self._prune_data(data)
 
         splits = data.split(';')[1:]
+        ret = {}
         for split in splits:
             lines = split.split('\n')
             meta = lines[0]
@@ -18,9 +20,11 @@ class InputParser:
             
             print('meta:', meta)
             if meta in self._helpers:
-                self._helpers[meta](arguments)
+                ret[meta] = self._helpers[meta](arguments)
             else:
-                raise ValueError("Unknown Token") 
+                raise ValueError("Unknown Token")
+        
+        return ret
     
     def _get_env_size(self, raw_data):
         if len(raw_data) != 1:
@@ -64,14 +68,31 @@ class InputParser:
                 raise ValueError("Each COMMAND must have 3 components")
             
             num, dir, dist = components
-            command = (int(num), dir, int(dist))
+            command = (int(num), dir.upper(), int(dist))
             commands.append(command)
         
         commands.sort(key=lambda x: x[0])
         commands = tuple(commands) #immutable
 
         print(commands)
+        self._check_commands(commands)
+
         return commands
+    
+    def _check_commands(self, commands):
+        for i, command in enumerate(commands):
+            num, dir, dist = command
+            self._check_command(command)
+
+            if i+1 != num:
+                raise ValueError("Missing command after command{}".format(num))
+
+    def _check_command(self, command):
+        num, dir, dist = command
+        
+        if dir not in ['LEFT', 'RIGHT', 'UP', 'DOWN', 'FORWARD', 'BACKWARD']:
+            raise ValueError("Invalid direction in command{} ({})".format(num, dir))
+
 
     
     def _prune_data(self, raw_data):
