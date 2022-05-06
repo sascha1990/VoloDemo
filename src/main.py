@@ -25,7 +25,11 @@ if __name__ == '__main__':
         agent.velocity = velocity
 
         new_pose = env.check_movement(agent)
-        agent.update_target_position(new_pose)
+        updated = agent.update_target_position(new_pose)
+
+        if updated:
+            print('{}->CRASH IMMINENT - AUTOMATIC COURSE CORRECTION'.format(tuple(velocity)))
+
         
         agent.apply_velocity()
         

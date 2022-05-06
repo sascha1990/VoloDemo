@@ -20,10 +20,13 @@ class Agent(ABC):
         return tuple(vel), tuple(self.position)
 
     def update_target_position(self, pos):
-        if pos is not None:
-            print('{}->CRASH IMMINENT - AUTOMATIC COURSE CORRECTION'.format(tuple(self.velocity)))
+        update = pos is not None
+
+        if update:
             new_velocity = vector_sub(pos, self.position)
             self.velocity = new_velocity
+        
+        return update
         
 
     
