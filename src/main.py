@@ -31,6 +31,9 @@ if __name__ == '__main__':
             print('{}->CRASH IMMINENT - AUTOMATIC COURSE CORRECTION'.format(tuple(velocity)))
 
         
-        agent.apply_velocity()
+        ret = agent.apply_velocity()
+
+        print('{}->{}'.format(*ret))
+
         
 

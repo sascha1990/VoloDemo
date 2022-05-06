@@ -15,8 +15,6 @@ class Agent(ABC):
         vel = self.velocity
         self.velocity = [0, 0, 0]
         
-        print('{}->{}'.format(tuple(vel), tuple(self.position)))
-
         return tuple(vel), tuple(self.position)
 
     def update_target_position(self, pos):
