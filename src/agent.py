@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 from math_util import *
 from copy import copy
+from logger import *
 
 class Agent(ABC):
     def __init__(self, position) -> None:
@@ -8,12 +9,15 @@ class Agent(ABC):
         self.position = position
         self.velocity = [0, 0, 0]
     
+    @track_method
     def apply_velocity(self):
         self.position = vector_add(self.position, self.velocity)
         vel = self.velocity
         self.velocity = [0, 0, 0]
         
         print('{}->{}'.format(tuple(vel), tuple(self.position)))
+
+        return tuple(vel), tuple(self.position)
         
 
     

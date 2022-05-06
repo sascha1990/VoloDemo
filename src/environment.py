@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 from math_util import *
 from copy import copy
+from logger import *
 
 class Environment(ABC):
     @abstractmethod
@@ -27,6 +28,7 @@ class CuboidEnvironment(Environment):
         
         return True
 
+    @track_method
     def _get_intersection(self, coord, velocity):
         future_position = vector_add(coord, velocity)
 
