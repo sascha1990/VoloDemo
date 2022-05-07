@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
-from math_util import *
+from util.math_util import *
 from copy import copy
-from logger import *
+from util.logger import *
 
 class Environment(ABC):
     @abstractmethod

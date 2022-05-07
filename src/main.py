@@ -1,7 +1,7 @@
-from parser import InputParser
-from environment import CuboidEnvironment
-from agent import DotAgent
-from math_util import *
+from util.parser import InputParser
+from environment.environments import CuboidEnvironment
+from agent.agents import DotAgent
+from util.math_util import *
 
 
 if __name__ == '__main__':
@@ -11,9 +11,6 @@ if __name__ == '__main__':
     world_shape = config['WORLD']
     init_position = config['DRONE']
     commands = config['COMMAND']
-
-    print('World Shape:', world_shape)
-    print('Init Position:', init_position)
 
     agent = DotAgent(init_position, 0)
     env = CuboidEnvironment(world_shape)
@@ -25,12 +22,11 @@ if __name__ == '__main__':
         agent.velocity = velocity
 
         new_pose = env.check_movement(agent)
-        updated = agent.update_target_position(new_pose)
+        updated = agent.update_velocity(new_pose)
 
         if updated:
             print('{}->CRASH IMMINENT - AUTOMATIC COURSE CORRECTION'.format(tuple(velocity)))
 
-        
         ret = agent.apply_velocity()
 
         print('{}->{}'.format(*ret))

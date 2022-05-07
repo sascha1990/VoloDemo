@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
-from math_util import *
+from util.math_util import *
 from copy import copy
-from logger import *
+from util.logger import *
 
 class Agent(ABC):
     def __init__(self, position) -> None:
@@ -17,7 +17,7 @@ class Agent(ABC):
         
         return tuple(vel), tuple(self.position)
 
-    def update_target_position(self, pos):
+    def update_velocity(self, pos):
         update = pos is not None
 
         if update:

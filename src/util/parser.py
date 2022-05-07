@@ -18,7 +18,6 @@ class InputParser:
             meta = lines[0]
             arguments = self._clean_up_data(lines[1:])
             
-            print('meta:', meta)
             if meta in self._helpers:
                 ret[meta] = self._helpers[meta](arguments)
             else:
@@ -41,7 +40,6 @@ class InputParser:
         for v in ret:
             if v < 0: raise ValueError("Dimensions of the environment must be unsigned")
         
-        print(ret)
         return ret
 
     def _get_init_pose(self, raw_data):
@@ -56,7 +54,6 @@ class InputParser:
         
         ret = tuple(map(int, values))#immutable
         
-        print(ret)
         return ret
 
     def _get_commands(self, raw_data):
@@ -74,7 +71,6 @@ class InputParser:
         commands.sort(key=lambda x: x[0])
         commands = tuple(commands) #immutable
 
-        print(commands)
         self._check_commands(commands)
 
         return commands
