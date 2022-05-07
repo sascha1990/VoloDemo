@@ -13,7 +13,7 @@ if __name__ == '__main__':
     init_position = config['DRONE']
     commands = config['COMMAND']
 
-    agent = DotAgent(init_position, 0)
+    agent = DotAgent(init_position)
     env = CuboidEnvironment(world_shape)
 
     for _, dir, dist in commands:
