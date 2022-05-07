@@ -1,7 +1,8 @@
-from util.parser import InputParser
-from environment.environments import CuboidEnvironment
-from agent.agents import DotAgent
-from util.math_util import *
+from src.util.parser import InputParser
+from src.environment.environments import CuboidEnvironment
+from src.agent.agents import DotAgent
+from src.util.math_util import *
+from src.environment.environments import CuboidEnvironment
 
 
 if __name__ == '__main__':
