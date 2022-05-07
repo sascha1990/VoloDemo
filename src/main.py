@@ -1,4 +1,4 @@
-from parsing.parser import InputParser
+from parsing.parser import TxtParser
 from src.environment.environments import CuboidEnvironment
 from src.agent.agents import DotAgent
 from src.util.math_util import *
@@ -6,7 +6,7 @@ from src.environment.environments import CuboidEnvironment
 
 
 if __name__ == '__main__':
-    parser = InputParser()
+    parser = TxtParser()
     config = parser.parse_file('input.txt')
 
     world_shape = config['WORLD']

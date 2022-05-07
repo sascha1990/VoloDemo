@@ -1,5 +1,5 @@
 
-class InputParser:
+class TxtParser:
     def __init__(self) -> None:
         self._helpers = {}
         self._helpers['WORLD'] = self._get_env_size
@@ -109,5 +109,5 @@ class InputParser:
         
 
 if __name__ == '__main__':
-    parser = InputParser()
+    parser = TxtParser()
     parser.parse_file('input.txt')
