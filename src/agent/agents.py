@@ -29,9 +29,8 @@ class Agent(ABC):
 
     
 class DotAgent(Agent):
-    def __init__(self, position, radius) -> None:
+    def __init__(self, position) -> None:
         super().__init__(position)
-        self._radius = radius
 
 if __name__ == '__main__':
     pass

@@ -1,4 +1,4 @@
-from parsing.parser import TxtParser
+from parsing.parsers import TxtParser
 from src.environment.environments import CuboidEnvironment
 from src.agent.agents import DotAgent
 from src.util.math_util import *
