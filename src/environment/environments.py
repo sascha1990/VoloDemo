@@ -3,6 +3,11 @@ from src.util.math_util import *
 from copy import copy
 from src.util.logger import *
 
+'''
+    Interface for all environments.
+    Environment classes contain all the information within the environment.
+    This might be obstacles or environment borders.
+'''
 class Environment(ABC):
     @abstractmethod
     def is_within(self, coord):
@@ -17,6 +22,10 @@ class Environment(ABC):
         pass
     
 
+'''
+    This is an example implementation of an cuboid environment. 
+    Thus agents could only move within its borders.
+'''
 class CuboidEnvironment(Environment):
     def __init__(self, shape) -> None:
         self._shape = shape
@@ -28,6 +37,21 @@ class CuboidEnvironment(Environment):
         
         return True
 
+    '''
+    Returns the closest point, if a collision would happen.
+    Returns None if no collision would happen.
+
+    Parameters
+    ----------
+    coord : list
+        A 3D vector as a list with three elements. This is the current position of an agent.
+    velocity : list
+        A 3D vector as a list with three elements. This is his planned velocity.
+    
+    Returns
+    ----------
+    returns None, if no intersection was found. returns the position of the detected collision else.
+    '''
     @track_method
     def _get_intersection(self, coord, velocity):
         future_position = vector_add(coord, velocity)
@@ -46,6 +70,12 @@ class CuboidEnvironment(Environment):
         
         return intersection
     
+    '''
+    Checks a planned movement of an agent.
+    Currently only checks for intersections with the borders of the envronment.
+
+    Taking obstacles into account will change this method.
+    '''
     def check_movement(self, agent):
         return self._get_intersection(agent.position, agent.velocity)
 
